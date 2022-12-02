@@ -22,7 +22,7 @@ window.onload = function () {
     // //variables autres
 
     let enfant_nbr = 1
-    // let enfant_fieldset = document.getElementById(enfant_1).innerHTML; Essaie de copie du HTML existant mais non réussi.
+    // let enfant_fieldset = document.getElementById('enfant_1').innerHTML; Essaie de copie du HTML existant mais non réussi.
 
 
 
@@ -47,33 +47,34 @@ window.onload = function () {
 
     const ajouterEnfant = function () {
         enfant_nbr++;
+                //fieldset + légende        
         let enfant_fieldset = document.createElement("fieldset");
         enfant_fieldset.id = "Enfant" + enfant_nbr;
         let enfant_legend = document.createElement("legend");
         enfant_legend.innerHTML = "Enfant" + enfant_nbr;
         enfant_fieldset.appendChild(enfant_legend);
-
+                //div nom
         let div1 = document.createElement("div");
         let label1 = document.createElement("label");
         label1.innerHTML = "Nom :";
         let input1 = document.createElement("input");
         input1.setAttribute('type', 'text')
         div1.append(label1, input1);
-
+                //div prénom
         let div2 = document.createElement("div");
         let label2 = document.createElement("label");
         label2.innerHTML = "Prénom :";
         let input2 = document.createElement("input");
         input2.setAttribute('type', 'text')
         div2.append(label2, input2);
-
+                //div date de naissance
         let div3 = document.createElement("div");
         let label3 = document.createElement("label");
         label3.innerHTML = "Date de naissance :";
         let input3 = document.createElement("input");
         input3.setAttribute('type', 'date')
         div3.append(label3, input3);
-
+                //on attache le tout
         enfant_fieldset.append(div1, div2, div3);
 
         html_enfants.appendChild(enfant_fieldset);
@@ -86,7 +87,6 @@ window.onload = function () {
         enfant_nbr--;
         html_enfants.removeChild(html_enfants.lastChild);
         // console.log("J'ai supprimé un enfant");
-
     }
 
     html_supprimer.onclick = supprimerEnfant;
@@ -94,12 +94,28 @@ window.onload = function () {
     // création de la liste de résultats
 
     const afficher_resultats = function (){
-        let liste_parents = document.createElement("ul");
-        let parent1 = getElementById("parent_1");
-        let parent2 = getElementById("parent_2");
+        let parent1_prenom = document.getElementById("p1_firstname").value;
+        let parent1_nom = document.getElementById("p1_lastname").value;
+        let parent1_naissance = document.getElementById("p1_birthdate").value.slice(0,4);
+        let parent1 = parent1_prenom +" "+ parent1_nom + " né en "+ parent1_naissance;
 
 
+        let parent2_prenom = document.getElementById("p2_firstname").value;
+        let parent2_nom = document.getElementById("p2_lastname").value;
+        let parent2_naissance = document.getElementById("p2_birthdate").value.slice(0,4);
+        
+        let parent2 = parent2_prenom +" "+ parent2_nom + " né en "+ parent2_naissance;
 
+
+        let liste = document.createElement("ul")
+        let li = document.createElement("li");
+        li.innerHTML= parent1;
+        let li2 = document.createElement("li");
+        li2.innerHTML = parent2;
+        liste.append(li,li2);
+
+        print(liste);
+        // console.log(liste);
 
     }
 
